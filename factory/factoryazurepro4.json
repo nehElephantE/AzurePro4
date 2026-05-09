@@ -1,0 +1,15 @@
+{
+	"name": "factoryazurepro4",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Enabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "41e7bc67-1d7a-49d7-bbf3-4058631d687f",
+		"tenantId": "20e0ee65-9554-4f21-bb36-53548247113d"
+	}
+}
