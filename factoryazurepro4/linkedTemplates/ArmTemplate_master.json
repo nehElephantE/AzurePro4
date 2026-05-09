@@ -1,0 +1,84 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "factoryazurepro4"
+		},
+		"azurepro4_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'azurepro4'"
+		},
+		"datalakepro4_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'datalakepro4'"
+		},
+		"azurepro4_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "serverazurepro4.database.windows.net"
+		},
+		"azurepro4_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "dbazurepro4"
+		},
+		"azurepro4_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "altaf"
+		},
+		"datalakepro4_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageazurepro4.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "factoryazurepro4_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"azurepro4_password": {
+						"value": "[parameters('azurepro4_password')]"
+					},
+					"datalakepro4_accountKey": {
+						"value": "[parameters('datalakepro4_accountKey')]"
+					},
+					"azurepro4_properties_typeProperties_server": {
+						"value": "[parameters('azurepro4_properties_typeProperties_server')]"
+					},
+					"azurepro4_properties_typeProperties_database": {
+						"value": "[parameters('azurepro4_properties_typeProperties_database')]"
+					},
+					"azurepro4_properties_typeProperties_userName": {
+						"value": "[parameters('azurepro4_properties_typeProperties_userName')]"
+					},
+					"datalakepro4_properties_typeProperties_url": {
+						"value": "[parameters('datalakepro4_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
